@@ -63,9 +63,7 @@ automation app, the app sends only the intent you configured, to the app you cho
         "stored": """<p>Your game in progress, high scores, statistics and settings are stored
 on your device.</p>""",
         "sections": [PLAY_GAMES, SHARING],
-        "permissions": [
-            ("Internet and network state", "used by Google Play Games for achievements and leaderboards"),
-        ],
+        "permissions": [],
     },
     {
         "slug": "one-and-up",
@@ -73,9 +71,7 @@ on your device.</p>""",
         "stored": """<p>Your game in progress, high scores, statistics and settings are stored
 on your device.</p>""",
         "sections": [PLAY_GAMES, SHARING],
-        "permissions": [
-            ("Internet and network state", "used by Google Play Games for achievements and leaderboards"),
-        ],
+        "permissions": [],
     },
     {
         "slug": "bandit-five",
@@ -122,9 +118,7 @@ from {name}. The app has no ads, analytics or tracking.</p>
     <p>This information stays on your device and is removed when you uninstall the app.</p>
 {sections}
     <h2>Permissions</h2>
-    <ul>
 {permissions}
-    </ul>
 
     <h2>Children</h2>
     <p>Because the app does not collect personal information, it does not knowingly collect
@@ -150,10 +144,14 @@ date.</p>
 def main():
     for app in APPS:
         sections = "".join(f"\n    <h2>{title}</h2>\n    {body}\n" for title, body in app["sections"])
-        permissions = "\n".join(
-            f"      <li><strong>{html.escape(name)}</strong>: {html.escape(why)}</li>"
-            for name, why in app["permissions"]
-        )
+        if app["permissions"]:
+            items = "\n".join(
+                f"      <li><strong>{html.escape(name)}</strong>: {html.escape(why)}</li>"
+                for name, why in app["permissions"]
+            )
+            permissions = f"    <ul>\n{items}\n    </ul>"
+        else:
+            permissions = "    <p>The app does not request any device permissions.</p>"
         page = PAGE.format(
             title=f"Privacy Policy - {app['name']}",
             name=app["name"],
