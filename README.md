@@ -18,7 +18,7 @@ keep working once the domain points here. The old site's content is archived in
 ## Going live
 
 1. Create the repository `jamesmorrisstudios/jamesmorrisstudios.github.io` and push this.
-2. Repository Settings → Pages: deploy from the `master` branch, root folder. The custom
+2. Repository Settings → Pages: deploy from the `main` branch, root folder. The custom
    domain is set by the `CNAME` file (`www.jamesmorrisstudios.us`).
 3. DNS for jamesmorrisstudios.us:
    - `www` CNAME → `jamesmorrisstudios.github.io`
