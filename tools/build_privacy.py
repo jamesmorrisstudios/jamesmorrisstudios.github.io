@@ -7,7 +7,7 @@ site used, so links in existing store listings keep working.
 """
 import html
 
-UPDATED = "October 23, 2026"
+UPDATED = "October 26, 2026"
 CONTACT = "support@jamesmorrisstudios.us"
 GOOGLE_PRIVACY = "https://policies.google.com/privacy"
 OSM_PRIVACY = "https://osmfoundation.org/wiki/Privacy_Policy"
@@ -76,7 +76,6 @@ on your device.</p>""",
     {
         "slug": "bandit-five",
         "name": "BandIt Five",
-        "updated": "October 26, 2026",
         "stored": """<p>Your game in progress, finished games and statistics, and settings are
 stored on your device.</p>""",
         "sections": [PLAY_GAMES, SHARING],
@@ -111,7 +110,12 @@ from {name}. The app has no ads, analytics or tracking.</p>
 
     <h2>Information stored on your device</h2>
     {stored}
-    <p>This information stays on your device and is removed when you uninstall the app.</p>
+    <p>This information is removed when you uninstall the app. If Android backup is turned
+on for your device, Android may include the app's data in your device backup in your
+Google account and restore it when you reinstall the app or set up a new device. That
+backup is handled by Google under the
+<a href="{google_privacy}">Google Privacy Policy</a>, and you can turn it off in your
+device's backup settings. James Morris Studios never receives this data.</p>
 {sections}
     <h2>Permissions</h2>
 {permissions}
@@ -156,6 +160,7 @@ def main():
             sections=sections,
             permissions=permissions,
             contact=CONTACT,
+            google_privacy=GOOGLE_PRIVACY,
         )
         path = f"{app['slug']}-privacy-policy.html"
         with open(path, "w", encoding="utf-8") as f:
