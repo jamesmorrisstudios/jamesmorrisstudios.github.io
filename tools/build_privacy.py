@@ -76,15 +76,11 @@ on your device.</p>""",
     {
         "slug": "bandit-five",
         "name": "BandIt Five",
-        "stored": """<p>Your settings are stored on your device.</p>""",
-        "sections": [
-            ("Online play", """<p>Online play, saved games, achievements and leaderboards
-used Google Play Games services that Google has since retired, so they are currently
-unavailable. The app does not connect to Google Play Games or any other online service.</p>"""),
-        ],
-        "permissions": [
-            ("Internet and network state", "declared for online play, which is currently unavailable"),
-        ],
+        "updated": "October 26, 2026",
+        "stored": """<p>Your game in progress, finished games and statistics, and settings are
+stored on your device.</p>""",
+        "sections": [PLAY_GAMES, SHARING],
+        "permissions": [],
     },
 ]
 
@@ -155,7 +151,7 @@ def main():
         page = PAGE.format(
             title=f"Privacy Policy - {app['name']}",
             name=app["name"],
-            updated=UPDATED,
+            updated=app.get("updated", UPDATED),
             stored=app["stored"],
             sections=sections,
             permissions=permissions,
